@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Vue.js App</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- 絞り込みラジオボタン -->
+            <label v-for="label in options">
+                <!-- v-modelでcurrentとチェックされた値を同期。 -->
+                <input type="radio" v-model="current" v-bind:value="label.value">{{ label.label }}
+            </label>
+            {{ computedTodos.length }} 件を表示中
+            <!-- ToDo テーブル -->
+            <!-- テーブルヘッダー -->
+            <table>
+                <thead>
+                    <tr>
+                        <th class="id">ID</th>
+                        <th class="comment">コメント</th>
+                        <th class="state">状態</th>
+                        <th class="button">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- [1]ここに<r>でToDoの要素を1行づつ繰り返し表示したい -->
+                    <!-- 
+                        v-bind:keyをつけることで、選択した行のみ削除される。
+                    -->
+                    <tr v-for="item in computedTodos" v-bind:key="item.id">
+                        <th>{{ item.id }}</th>
+                        <th>{{ item.comment }}</th>
+                        <th class="state">
+                            <button v-on:click="doChangeState(item)">{{ labels[item.state] }}</button>
+                        </th>
+                        <th>
+                            <!-- 
+                                click.ctrlとすることで、コントロールキーを押しながらでないとクリックできないようにする。 
+                                (ctrlにするとクロームだと右クリックになるので、.metaでmacならcmd, windowsならwindowsキーに設定。)
+                            -->
+                            <button v-on:click.meta="doRemove(item)">削除</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 新規登録フォーム -->
+            <!-- 
+                v-on:submit.preventでブラウザのデフォルト送信を阻止できる。
+                prevnetをつけなくても、関数内の引数.preventDefault()でも可能。
+             -->
+            <form class="add-form" v-on:submit.prevent=doAdd>
+
+                <!-- ref属性をつけることで、this.$refs.comment.valueのようにその属性にアクセスできる。 -->
+                <input type="text" ref="comment">
+                <button type="submit">追加</button>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
+
+</html>
