@@ -43,7 +43,7 @@
                 v-on:submit.preventでブラウザのデフォルト送信を阻止できる。
                 prevnetをつけなくても、関数内の引数.preventDefault()でも可能。
              -->
-            <form class="add-form" v-on:submit.prevent=:doAdd>
+            <form class="add-form" v-on:submit.prevent=doAdd>
                 <!-- ref属性をつけることで、this.$refs.comment.valueのようにその属性にアクセスできる。 -->
                 <input type="text" ref="comment">
                 <button type="submit">追加</button>
