@@ -26,6 +26,9 @@ const app = new Vue({
         //どんなデータを使用するか初期値で宣言
         todos: []
     },
+    created() {
+        this.todos = todoStorage.fetch();
+    },
     methods: {
         // 使用するメソッド
         doAdd: function (event, value) {
