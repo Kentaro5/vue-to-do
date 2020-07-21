@@ -39,6 +39,15 @@
                 </tbody>
             </table>
             <!-- 新規登録フォーム -->
+            <!-- 
+                v-on:submit.preventでブラウザのデフォルト送信を阻止できる。
+                prevnetをつけなくても、関数内の引数.preventDefault()でも可能。
+             -->
+            <form class="add-form" v-on:submit.prevent=:doAdd>
+                <!-- ref属性をつけることで、this.$refs.comment.valueのようにその属性にアクセスできる。 -->
+                <input type="text" ref="comment">
+                <button type="submit">追加</button>
+            </form>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
         <script src="main.js"></script>
