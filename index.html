@@ -10,6 +10,10 @@
     <body>
         <div id="app">
             <!-- 絞り込みラジオボタン -->
+            <label v-for="label in options">
+                <!-- v-modelでcurrentとチェックされた値を同期。 -->
+                <input type="radio" v-model="current" v-bind:value="label.value">{{ label.label }}
+            </label>
             <!-- ToDo テーブル -->
             <!-- テーブルヘッダー -->
             <table>
@@ -48,6 +52,7 @@
                 prevnetをつけなくても、関数内の引数.preventDefault()でも可能。
              -->
             <form class="add-form" v-on:submit.prevent=doAdd>
+
                 <!-- ref属性をつけることで、this.$refs.comment.valueのようにその属性にアクセスできる。 -->
                 <input type="text" ref="comment">
                 <button type="submit">追加</button>
