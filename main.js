@@ -50,10 +50,15 @@ const app = new Vue({
             comment.value = ''
         }
     },
-    filters: {
-        // 使用するメソッド
-    },
-    computed: {
-        // 使用するメソッド
-    },
+    watch: {
+        //オプションを使う場合は、オブジェクト形式にする
+        todos: {
+            //引数はウォッチしているプロパティの変更後の値
+            handler: function (todos) {
+                todoStorage.save(todos)
+            },
+            //deepオプションでネストしているデータも監視できる。
+            deep: true
+        }
+    }
 })
