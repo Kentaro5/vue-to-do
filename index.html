@@ -30,10 +30,14 @@
                         <th>{{ item.id }}</th>
                         <th>{{ item.comment }}</th>
                         <th class="state">
-                            <button>{{ item.state }}</button>
+                            <button v-on:click="doChangeState(item)">{{ item.state }}</button>
                         </th>
                         <th>
-                            <button>削除</button>
+                            <!-- 
+                                click.ctrlとすることで、コントロールキーを押しながらでないとクリックできないようにする。 
+                                (ctrlにするとクロームだと右クリックになるので、.metaでmacならcmd, windowsならwindowsキーに設定。)
+                            -->
+                            <button v-on:click.meta="doRemove(item)">削除</button>
                         </th>
                     </tr>
                 </tbody>
