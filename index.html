@@ -23,6 +23,19 @@
                 </thead>
                 <tbody>
                     <!-- [1]ここに<r>でToDoの要素を1行づつ繰り返し表示したい -->
+                    <!-- 
+                        v-bind:keyをつけることで、選択した行のみ削除される。
+                    -->
+                    <tr v-for="item in todos" v-bind:key="item.id">
+                        <th>{{ item.id }}</th>
+                        <th>{{ item.comment }}</th>
+                        <th class="state">
+                            <button>{{ item.state }}</button>
+                        </th>
+                        <th>
+                            <button>削除</button>
+                        </th>
+                    </tr>
                 </tbody>
             </table>
             <!-- 新規登録フォーム -->

@@ -21,7 +21,8 @@ var todoStorage = {
 const app = new Vue({
     el: '#app',
     data: {
-        // 使用するデータ
+        //どんなデータを使用するか初期値で宣言
+        todos: []
     },
     methods: {
         // 使用するメソッド
