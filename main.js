@@ -80,5 +80,17 @@ const app = new Vue({
             //deepオプションでネストしているデータも監視できる。
             deep: true
         }
+    },
+    computed: {
+        //thisの値に変化があるたびに、computedTodosが発火する。
+        computedTodos: function () {
+
+            //データcurrentが-1ならすべて
+            //それ以外ならcurrentとstateが一致(true)するものだけデータを返す
+            //第２引数のthisでoptionsやtodos,currentにthis.でアクセスできる。
+            return this.todos.filter(function (e) {
+                return this.current < 0 ? true : this.current === e.state
+            }, this)
+        }
     }
 })

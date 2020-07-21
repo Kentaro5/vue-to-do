@@ -14,6 +14,7 @@
                 <!-- v-modelでcurrentとチェックされた値を同期。 -->
                 <input type="radio" v-model="current" v-bind:value="label.value">{{ label.label }}
             </label>
+            {{ computedTodos.length }} 件を表示中
             <!-- ToDo テーブル -->
             <!-- テーブルヘッダー -->
             <table>
@@ -30,7 +31,7 @@
                     <!-- 
                         v-bind:keyをつけることで、選択した行のみ削除される。
                     -->
-                    <tr v-for="item in todos" v-bind:key="item.id">
+                    <tr v-for="item in computedTodos" v-bind:key="item.id">
                         <th>{{ item.id }}</th>
                         <th>{{ item.comment }}</th>
                         <th class="state">
