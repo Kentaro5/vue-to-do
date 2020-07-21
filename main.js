@@ -82,6 +82,17 @@ const app = new Vue({
         }
     },
     computed: {
+        labels() {
+            return this.options.reduce(function (new_object, options_object) {
+                return Object.assign(new_object, {
+                    [options_object.value]: options_object.label
+                })
+            }, {})
+            // options_object = options
+            // new_object = データを加工したもの。
+            // キーからみつけやすいように、次のように加工したデータを作成。
+            // {0: '作業中', 1: '完了', -1: 'すべて'}
+        },
         //thisの値に変化があるたびに、computedTodosが発火する。
         computedTodos: function () {
 

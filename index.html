@@ -35,7 +35,7 @@
                         <th>{{ item.id }}</th>
                         <th>{{ item.comment }}</th>
                         <th class="state">
-                            <button v-on:click="doChangeState(item)">{{ item.state }}</button>
+                            <button v-on:click="doChangeState(item)">{{ labels[item.state] }}</button>
                         </th>
                         <th>
                             <!-- 
